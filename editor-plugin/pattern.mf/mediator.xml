@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="mediator"
+         name="Mediator"
+         topCategorie="GoF"
+         subCategorie="Behavioral Pattern">
+
+  <comment>
+    Define an object that encapsulates how a set of objects interact. Mediator promotes
+    loose coupling by keeping objects from referring to each other explicitly, and it
+    lets you vary their interaction independently.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Mediator" min="1" max="1">
+    <comment>
+      <li>defines an interface for communicating with Colleague objects.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteMediator" min="1" max="1">
+    <comment>
+      <li>implements cooperative behavior by coordinating Colleague objects.</li>
+      <li>knows and maintains its colleagues.</li>
+    </comment>
+    <dependence roles="Mediator ConcreteColleague" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Colleague" min="1" max="1">
+    <comment>
+      <li>each Colleague class knows its Mediator object.</li>
+      <li>each colleague communicates with its mediator whenever it would have otherwise communicated with another colleague.</li>
+    </comment>
+    <dependence roles="Mediator" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteColleague" min="1" max="n">
+    <comment>
+      <li>each Colleague class knows its Mediator object.</li>
+      <li>each Colleague communicates with its mediator whenever it would have otherwise communicated with another colleague.</li>
+    </comment>
+    <dependence roles="Colleague" />
+  </role>
+
+</pattern>

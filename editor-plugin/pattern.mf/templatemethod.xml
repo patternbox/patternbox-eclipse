@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="templatemethod"
+         name="Template Method"
+         topCategorie="GoF"
+         subCategorie="Behavioral Pattern">
+
+  <comment>
+    Define the skeleton of an algorithm in an operation, deferring some steps to subclasses.
+    Template Method lets subclasses redefine certain steps of an algorithm without changing
+    the algorithm's structure.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="AbstractClass" min="1" max="1">
+    <comment>
+      <li>defines abstract primitive operations that concrete subclasses define to implement steps of an algorithm.</li>
+      <li>implements a template method defining the skeleton of an algorithm. The template method calls primitive operations as well as operations defined in AbstractClass or those of other objects.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteClass" min="1" max="n">
+    <comment>
+      <li>implements the primitive operations to carry out subclass-specific steps of the algorithm.</li>
+    </comment>
+    <dependence roles="AbstractClass" />
+  </role>
+
+</pattern>

@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Patternbox Plugin
+Bundle-SymbolicName: com.patternbox.eclipse.editor;singleton:=true
+Bundle-Version: 1.2.0.qualifier
+Bundle-Activator: com.patternbox.eclipse.editor.DesignPatternPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.core.resources,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.ide,
+ org.eclipse.jdt.core,
+ org.eclipse.jdt.ui,
+ org.eclipse.ui.forms,
+ org.eclipse.debug.ui,
+ org.eclipse.pde.core,
+ org.eclipse.pde.ui,
+ org.eclipse.ui.views
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Dirk Ehms, www.patternbox.com

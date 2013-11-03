@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="composite" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="Component" type="class" modifiers="public abstract">
+
+    <method modifiers="public abstract" return="void" name="operation">
+      <comment>
+        This method is the implementation of Component specific operation.
+      </comment>
+    </method>
+
+    <method modifiers="public abstract" return="void" name="add">
+      <comment>
+        This method adds a new child (either Leaf or Composite) to the other children.
+      </comment>
+      <param type="$Component$" name="child" />
+      <exception type="java.lang.AbstractMethodError"/>
+    </method>
+
+    <method modifiers="public abstract" return="void" name="remove">
+      <comment>
+        This method removes a child (either Leaf or Composite) from the children.
+      </comment>
+      <param type="$Component$" name="child" />
+      <exception type="java.lang.AbstractMethodError"/>
+    </method>
+
+    <method modifiers="public abstract" return="$Component$" name="getChild">
+      <comment>
+        This method returns a child (either Leaf or Composite) at a certain index.
+      </comment>
+      <param type="int" name="index" />
+      <exception type="java.lang.AbstractMethodError"/>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Leaf" type="class" modifiers="public" >
+
+    <superclass type="$Component$"/>
+
+    <field modifiers="private final static"
+    	   type="java.lang.String"
+    	   name="ERROR_MSG"
+    	   initial="&quot;This method should never be called.&quot;">
+      <comment>Error message constant</comment>
+    </field>
+
+    <method modifiers="public" return="void" name="operation">
+      <comment>
+        This method is the implementation of Leaf specific operation.
+      </comment>
+      <code>
+        // TODO Write your specific operation code here ...
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="add">
+      <comment>
+        This method should never be called, otherwise an AbstractMethodError
+        will be thrown.
+      </comment>
+      <param type="$Component$" name="child" />
+      <exception type="java.lang.AbstractMethodError"/>
+      <code>
+      	throw new AbstractMethodError(ERROR_MSG);
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="remove">
+      <comment>
+        This method should never be called, otherwise an AbstractMethodError
+        will be thrown.
+      </comment>
+      <param type="$Component$" name="child" />
+      <exception type="java.lang.AbstractMethodError"/>
+      <code>
+      	throw new AbstractMethodError(ERROR_MSG);
+      </code>
+    </method>
+
+    <method modifiers="public" return="$Component$" name="getChild">
+      <comment>
+        This method should never be called, otherwise an AbstractMethodError
+        will be thrown.
+      </comment>
+      <param type="int" name="index" />
+      <exception type="java.lang.AbstractMethodError"/>
+      <code>
+      	throw new AbstractMethodError(ERROR_MSG);
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Composite" type="class" modifiers="public" >
+
+  	<import type="java.util.ArrayList"/>
+  	<import type="java.util.Iterator"/>
+
+    <superclass type="$Component$"/>
+
+    <field modifiers="private final" type="java.util.List" name="fChildren" initial="new ArrayList()">
+      <comment>Collection of children in the Composite hierachy</comment>
+    </field>
+
+    <method modifiers="public" return="void" name="operation">
+      <comment>
+        This method iterates of all Component children specific operations.
+      </comment>
+      <code>
+        Iterator iterator = fChildren.iterator();
+        while (iterator.hasNext()) {
+           ((Component) iterator.next()).operation();
+        }  // while
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="add">
+      <comment>
+        This method adds a new child (either Leaf or Composite) to the other children.
+      </comment>
+      <param type="$Component$" name="child" />
+      <exception type="java.lang.AbstractMethodError"/>
+      <code>
+      	fChildren.add(child);
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="remove">
+      <comment>
+        This method removes a child (either Leaf or Composite) from the children.
+      </comment>
+      <param type="$Component$" name="child" />
+      <exception type="java.lang.AbstractMethodError"/>
+      <code>
+      	fChildren.remove(child);
+      </code>
+    </method>
+
+    <method modifiers="public" return="$Component$" name="getChild">
+      <comment>
+        This method returns a child (either Leaf or Composite) at a certain index.
+      </comment>
+      <param type="int" name="index" />
+      <exception type="java.lang.AbstractMethodError"/>
+      <code>
+      	return ($Component$) fChildren.get(index);
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" type="class" modifiers="public" >
+
+    <field modifiers="private" type="$Component$" name="fComponent" initial="null">
+      <comment>stores the Command instance of the Invoker</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>
+        Default construtor
+      </comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor overloads the default constructor. An instance
+        of Component is delivered as parameter.
+      </comment>
+      <param type="$Component$" name="component" />
+      <code>
+        super();
+        fComponent = component;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="createComposite">
+      <comment>
+        This method shows an example how to create a simple composite hierarchy.
+      </comment>
+      <code>
+      	fComponent = new $Composite$();
+
+      	$Composite$ composite = new $Composite$();
+      	composite.add(new $Leaf$());
+      	composite.add(new $Leaf$());
+
+      	fComponent.add(composite);
+      	fComponent.add(new $Leaf$());
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="useComposite">
+      <comment>
+        This method invokes the specific Component operation.
+      </comment>
+      <code>
+      	fComponent.operation();
+      </code>
+    </method>
+
+  </role>
+
+</templates>

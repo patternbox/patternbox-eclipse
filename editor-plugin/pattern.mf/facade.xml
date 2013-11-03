@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="facade"
+         name="Facade"
+         topCategorie="GoF"
+         subCategorie="Structural Pattern">
+
+  <comment>
+    Provide a unified interface to a set of interfaces in a subsystem. Facade defines a
+    higher-level interface that makes the subsystem easier to use.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Facade" min="1" max="1">
+    <comment>
+      <li>knows which subsystem classes are responsible for a request.</li>
+      <li>delegates client requests to appropriate subsystem objects.</li>
+    </comment>
+    <dependence roles="Subsystem" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Subsystem" min="1" max="1">
+    <comment>
+      <li>implement subsystem functionality.</li>
+      <li>handle work assigned by the Facade object.</li>
+      <li>have no knowledge of the facade; that is, they keep no references to it.</li>
+    </comment>
+  </role>
+
+</pattern>

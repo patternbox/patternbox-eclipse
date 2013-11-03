@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="templatemethod" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="AbstractClass" type="class" modifiers="public abstract">
+
+    <constructor modifiers="public">
+      <comment>Default constuctor</comment>
+      <code>super();</code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="templateMethod">
+      <comment>
+        This method defines a skeleton of an algorithm, delegating some steps
+        to primitive operations to its subclass implementation.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+        primitiveOperation1();
+        primitiveOperation2();
+      </code>
+    </method>
+
+    <method modifiers="protected abstract" return="void" name="primitiveOperation1">
+      <comment>
+        This abstract method must be implemented by a ConcreteClass. It is used
+        by the templateMethod to proceed the algorithm.
+      </comment>
+    </method>
+
+    <method modifiers="protected abstract" return="void" name="primitiveOperation2">
+      <comment>
+        This abstract method must be implemented by a ConcreteClass. It is used
+        by the templateMethod to proceed the algorithm.
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteClass" type="class" modifiers="public">
+
+    <superclass type="$AbstractClass$"/>
+
+    <constructor modifiers="public">
+      <comment>Default constuctor</comment>
+      <code>super();</code>
+    </constructor>
+
+    <method modifiers="protected" return="void" name="primitiveOperation1">
+      <comment>
+        This abstract method must be implemented by a ConcreteClass. It is used
+        by the templateMethod to proceed the algorithm.
+      </comment>
+      <code>
+        // TODO Implement this primitive operation to perform a step in the algorithm defined in the AbstractClass.
+      </code>
+    </method>
+
+    <method modifiers="protected" return="void" name="primitiveOperation2">
+      <comment>
+        This abstract method must be implemented by a ConcreteClass. It is used
+        by the templateMethod to proceed the algorithm.
+      </comment>
+      <code>
+        // TODO Implement this primitive operation to perform a step in the algorithm defined in the AbstractClass.
+      </code>
+    </method>
+
+  </role>
+
+</templates>

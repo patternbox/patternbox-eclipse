@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="adapter" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="Target" type="interface" modifiers="public" >
+
+    <method modifiers="public" return="void" name="request">
+      <comment>
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" type="class" modifiers="public">
+
+    <field modifiers="private final" type="$Target$" name="fTarget"/>
+
+    <constructor modifiers="public">
+      <param type="$Target$" name="target"/>
+      <code>
+        super();
+        fTarget = target;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="useAdapter">
+      <comment>
+        This is just an example how to use the Adapter pattern. This operation
+        must be customized based on your application needs.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+        fTarget.request();
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Adapter" type="class" modifiers="public">
+
+    <interface type="$Target$"/>
+
+    <field modifiers="private final" type="$Adaptee$" name="fAdaptee"/>
+
+    <constructor modifiers="public">
+      <param type="$Adaptee$" name="adaptee"/>
+      <code>
+        super();
+        fAdaptee = adaptee;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="request">
+      <comment>
+        This method adapts the Target to the Adaptee's specific method.
+      </comment>
+      <code>
+        fAdaptee.specificRequest();
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Adaptee" type="class" modifiers="public">
+
+    <method modifiers="public" return="void" name="specificRequest">
+      <comment>This operation must be adapted by the Adapter.</comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+      </code>
+    </method>
+
+  </role>
+
+</templates>

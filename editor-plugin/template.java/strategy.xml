@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="strategy" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="Strategy" type="interface" modifiers="public">
+
+    <method modifiers="public" return="void" name="algorithmInterface">
+      <comment>
+        This method declaration must be implemented by the ConcreteStrategy implementations.
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteStrategy" type="class" modifiers="public" >
+
+    <interface type="$Strategy$"/>
+
+    <constructor modifiers="public">
+      <comment>Default constructor</comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="algorithmInterface">
+      <comment>
+        This method implements the algorithm operation defined by the Strategy interface.
+      </comment>
+      <code>
+        // TODO Write your algorithm code here ...
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Context" type="class" modifiers="public" >
+
+    <field modifiers="private final" type="$Strategy$" name="fStrategy">
+      <comment>stores the Strategy instance of the Context</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$Strategy$" name="strategy" />
+      <code>
+        super();
+        fStrategy = strategy;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="contextInterface">
+      <comment>
+        This method invokes the algorithm interface of the current Strategy
+      </comment>
+      <code>
+        fStrategy.algorithmInterface();
+      </code>
+    </method>
+
+  </role>
+
+</templates>

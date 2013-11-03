@@ -1,0 +1,96 @@
+Version 1.2.0
+
+- Bugfix: Eclipse Kepler 4.3 support
+- Update Site
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.1.7
+
+- Bugfix: Eclipse Indigo 3.7 support
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.1.6
+
+- Bugfix: Eclipse 3.3 support
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.1.5
+
+- Bugfix: Eclipse 3.2 support
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.1.4
+
+- Bugfix: Eclipse 3.1 support
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.1.3
+
+- Bugfix: Eclipse 3.1.M6 support
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.1.2
+
+- Bugfix: Eclipse 3.1.M3 support
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.1.1
+
+- Bugfix: AUTO-REPLACE problem in design pattern "state" and "mediator" solved
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.1.0
+
+- Eclipse 3.0.0 support
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.0.2
+
+- Bugfix: Eclipse 3.0M4 support
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.0.1
+
+- Bugfix: Supporting "synchronized" as modifiers attribute
+
+* NEW DESIGN PATTERN TEMPLATES ADDED: Abstract Factory, Template Method
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 1.0.0
+
+- Automatic code replacement of AUTO-REPLACE placeholders
+- Automatic member name setting (numerical suffix increment)
+- Class / Interface comment setting during member creation
+- Code template error in design pattern "iterator" corrected (implementation of interfaces Iterator, Aggregate)
+
+* NEW DESIGN PATTERN TEMPLATES ADDED: State, Strategy, Builder
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 0.9.1 
+
+- DTD for design pattern manifest and code template files (validity check)
+- Auto-Replacement for design pattern participants with mutually accociations prepared (will be finished next version)
+- Spelling mistake in design pattern "command" corrected (thank you Brant Herbert)
+
+* NEW DESIGN PATTERN TEMPLATES ADDED: Factory Method, Mediator, Composite
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Version 0.9.0 (base version)
+
+- 8 predefined design pattern of the Gang of Four included
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+

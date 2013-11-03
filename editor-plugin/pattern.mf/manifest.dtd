@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  
+  Copyright (C)2003-2012 by Dirk Ehms, www.patternbox.com. 
+  All rights reserved. 
+  
+  This DTD module is identified by the SYSTEM identifier:
+  SYSTEM "manifest.dtd"
+
+  Version: 1.1
+  Date:    2003-09-23
+
+-->
+
+<!ELEMENT pattern (comment,role+)>
+<!ATTLIST pattern
+  id            NMTOKEN   #REQUIRED
+  name          CDATA     #REQUIRED
+  topCategorie  CDATA     #REQUIRED
+  subCategorie  CDATA     #IMPLIED
+  authorName    CDATA     "Dirk Ehms"
+  authorWebsite CDATA     "www.patternbox.com"
+>
+
+<!-- design pattern participant -->
+<!ELEMENT role (comment,dependence?)>
+<!ATTLIST role
+  name          ID        #REQUIRED
+  min           NMTOKEN   #REQUIRED
+  max           NMTOKEN   #REQUIRED
+>
+
+<!-- role dependence -->
+<!ELEMENT dependence EMPTY>
+<!ATTLIST dependence
+  roles         IDREFS    #REQUIRED
+>
+
+<!-- pattern|role comment -->
+<!ELEMENT comment (#PCDATA|li)*>
+
+<!-- comment list item -->
+<!ELEMENT li (#PCDATA)>

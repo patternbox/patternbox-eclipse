@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="builder"
+         name="Builder"
+         topCategorie="GoF"
+         subCategorie="Creational Pattern">
+
+  <comment>
+    Separate the construction of a complex object from its representation so that
+    the same construction process can create different representations.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Builder" min="1" max="1">
+    <comment>
+      <li>specifies an abstract interface for creating parts of a Product object.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteBuilder" min="1" max="n">
+    <comment>
+      <li>constructs and assembles parts of the product by implementing the Builder interface.</li>
+      <li>defines and keeps track of the representation it creates.</li>
+      <li>provides an interface for retrieving the product.</li>
+    </comment>
+    <dependence roles="Builder Product" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Director" min="1" max="1">
+    <comment>
+      <li>constructs an object using the Builder interface.</li>
+    </comment>
+    <dependence roles="Builder" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Product" min="1" max="1">
+    <comment>
+      <li>represents the complex object under construction. ConcreteBuilder builds the product's internal representation and defines the process by which it's assembled.</li>
+      <li>includes classes that define the constituent parts, including interfaces for assembling the parts into the final result.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" min="1" max="n">
+    <comment>
+      <li>requests the services from Director to construct a complex object.</li>
+    </comment>
+    <dependence roles="ConcreteBuilder Director" />
+  </role>
+
+</pattern>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="abstractfactory"
+         name="Abstract Factory"
+         topCategorie="GoF"
+         subCategorie="Creational Pattern">
+
+  <comment>
+    Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="AbstractFactory" min="1" max="1">
+    <comment>
+      <li>declares an interface for operations that create abstract product objects.</li>
+    </comment>
+    <dependence roles="ConcreteProduct" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteFactory" min="1" max="1">
+    <comment>
+      <li>implements the operations to create concrete product objects.</li>
+    </comment>
+    <dependence roles="AbstractFactory" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="AbstractProduct" min="1" max="1">
+    <comment>
+      <li>declares an interface for a type of product object.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteProduct" min="1" max="n">
+    <comment>
+      <li>defines a product object to be created by the corresponding concrete factory.</li>
+      <li>implements the AbstractProduct interface.</li>
+    </comment>
+    <dependence roles="AbstractProduct" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" min="1" max="n">
+    <comment>
+      <li>uses only interfaces declared by AbstractFactory and AbstractProduct classes.</li>
+    </comment>
+    <dependence roles="AbstractFactory AbstractProduct" />
+  </role>
+
+</pattern>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="adapter"
+         name="Adapter"
+         topCategorie="GoF"
+         subCategorie="Structural Pattern">
+
+  <comment>
+    Convert the interface of a class into another interface clients expect. Adapter lets
+    classes work together that couldn't otherwise because of incompatible interfaces.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Target" min="1" max="1">
+    <comment>
+      <li>defines the domain-specific interface that Client uses.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" min="1" max="1">
+    <comment>
+      <li>collaborates with objects conforming to the Target interface.</li>
+    </comment>
+    <dependence roles="Target" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Adaptee" min="1" max="1">
+    <comment>
+      <li>defines an existing interface that needs adapting.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Adapter" min="1" max="1">
+    <comment>
+      <li>adapts the interface of Adaptee to the Target interface.</li>
+    </comment>
+    <dependence roles="Adaptee Target" />
+  </role>
+
+</pattern>

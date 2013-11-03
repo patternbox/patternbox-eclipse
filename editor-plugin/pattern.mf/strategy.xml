@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="strategy"
+         name="Strategy"
+         topCategorie="GoF"
+         subCategorie="Behavioral Pattern">
+
+  <comment>
+    Define a family of algorithms, encapsulate each one, and make them interchangeable.
+    Strategy lets the algorithm vary independently from clients that use it.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Strategy" min="1" max="1">
+    <comment>
+      <li>declares an interface common to all supported algorithms. Context uses this interface to call the algorithm defined by a ConcreteStrategy.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteStrategy" min="1" max="n">
+    <comment>
+      <li>implements the algorithm using the Strategy interface.</li>
+    </comment>
+    <dependence roles="Strategy" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Context" min="1" max="1">
+    <comment>
+      <li>is configured with a ConcreteStrategy object.</li>
+      <li>maintains a reference to a Strategy object.</li>
+      <li>may define an interface that lets Strategy access its data.</li>
+    </comment>
+    <dependence roles="Strategy" />
+  </role>
+
+</pattern>

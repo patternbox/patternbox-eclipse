@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="mediator" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="Mediator" type="interface" modifiers="public">
+
+    <method modifiers="public" return="void" name="createColleagues">
+      <comment>
+        This method creates all colleagues instances.
+      </comment>
+    </method>
+
+    <method modifiers="public" return="void" name="colleagueChanged">
+      <comment>
+        Each associated colleague have to call this method if its properties of
+        interest are changed.
+      </comment>
+      <param type="$Colleague$" name="colleague" />
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteMediator" type="class" modifiers="public">
+
+    <interface type="$Mediator$"/>
+
+    <method modifiers="public" return="void" name="createColleagues">
+      <comment>
+        This method creates all colleagues instances.
+      </comment>
+      <code>
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="colleagueChanged">
+      <comment>
+        Each associated colleague have to call this method if its properties of
+        interest are changed.
+      </comment>
+      <param type="$Colleague$" name="colleague" />
+      <code>
+        // TODO Inform all other colleagues that one colleague has changed.
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Colleague" type="class" modifiers="public abstract">
+
+    <field modifiers="private final" type="$Mediator$" name="fMediator">
+      <comment>stores the associated Mediator</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$Mediator$" name="mediator" />
+      <code>
+        super();
+        fMediator = mediator;
+      </code>
+    </constructor>
+
+	<!--
+    <method modifiers="protected" return="$Mediator$" name="getMediator">
+      <comment>
+        This method returns the associated Mediator instance to its derived classes.
+      </comment>
+      <code>return fMediator;</code>
+    </method>
+    -->
+
+    <method modifiers="protected" return="void" name="changed">
+      <comment>
+      	Call this method from derived classes if a property of interest has been changed.
+      </comment>
+      <code>
+        fMediator.colleagueChanged(this);
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteColleague" type="class" modifiers="public">
+
+    <superclass type="$Colleague$"/>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$Mediator$" name="mediator" />
+      <code>
+        // call inherited constructor
+        super(mediator);
+      </code>
+    </constructor>
+
+  </role>
+
+</templates>

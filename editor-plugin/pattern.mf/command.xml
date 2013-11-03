@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="command"
+         name="Command"
+         topCategorie="GoF"
+         subCategorie="Behavioral Pattern">
+
+  <comment>
+    Encapsulate a request as an object, thereby letting you parameterize clients with
+    different requests, queue or log requests, and support undoable operations.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Command" min="1" max="1">
+    <comment>
+      <li>declares an interface for executing an operation.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteCommand" min="1" max="n">
+    <comment>
+      <li>defines a binding between a Receiver object and an action.</li>
+      <li>implements Execute by invoking the corresponding operation(s) on Receiver.</li>
+    </comment>
+    <dependence roles="Command Receiver" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" min="1" max="n">
+    <comment>
+      <li>creates a ConcreteCommand object and sets its receiver.</li>
+    </comment>
+    <dependence roles="ConcreteCommand Receiver" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Invoker" min="1" max="1">
+    <comment>
+      <li>asks the command to carry out the request.</li>
+    </comment>
+    <dependence roles="Command" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Receiver" min="1" max="1">
+    <comment>
+      <li>knows how to perform the operations associated with carrying out a request. Any class may serve as a Receiver.</li>
+    </comment>
+  </role>
+
+</pattern>

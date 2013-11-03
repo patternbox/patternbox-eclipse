@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="state" version="1.1">
+
+  <!-- ====================================================================== -->
+  <role name="Context" type="class" modifiers="public">
+
+    <field modifiers="private" type="$State$" name="fState">
+      <comment>stores the associated State instance</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$State$" name="state" />
+      <code>
+        super();
+        fState = state;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="request">
+      <comment>
+        The Context object delegates all state-specific requests to its
+        associated State instance.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+        fState.handle(this);
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="changeState">
+      <comment>
+        This method changes the state of the Context instance.
+      </comment>
+      <param type="$State$" name="state" />
+      <code>
+        fState = state;
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="State" type="class" modifiers="public abstract">
+
+    <method modifiers="protected" return="void" name="changeState">
+      <comment>
+        This method changes the state of the given Context parameter.
+      </comment>
+      <param type="$Context$" name="context" />
+      <param type="$State$" name="state" />
+      <code>
+        <replace initial="// " dependence="Context">context.changeState(state)</replace>;
+      </code>
+    </method>
+
+    <method modifiers="public abstract" return="void" name="handle">
+      <comment>
+      	This abstract method must be implemented by the ConcreteState.
+      </comment>
+      <param type="$Context$" name="context" />
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteState" type="class" modifiers="public">
+
+    <superclass type="$State$" />
+
+    <constructor modifiers="public">
+      <comment>Default constructor</comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="handle">
+      <comment>
+        This method handles a request from a Context instance.
+      </comment>
+      <param type="$Context$" name="context" />
+      <code>
+        super.changeState(context, this);
+      </code>
+    </method>
+
+  </role>
+
+</templates>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  
+  Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. 
+  All rights reserved. 
+  
+  This DTD module is identified by the SYSTEM identifier:
+  SYSTEM "templates.dtd"
+
+  Version: 1.0
+  Date:    2003-09-02
+
+-->
+
+<!ELEMENT templates (role*)>
+<!ATTLIST templates
+  id        NMTOKEN   #REQUIRED
+  version   NMTOKEN   #REQUIRED
+>
+
+<!ELEMENT role (import*,superclass?,interface*,field*,constructor*,method*)>
+<!ATTLIST role
+  name      ID                 #REQUIRED
+  type      (class|interface)  #REQUIRED
+  modifiers CDATA              #IMPLIED
+>
+
+<!ELEMENT import EMPTY>
+<!ATTLIST import
+  type      CDATA   #REQUIRED
+>
+
+<!ELEMENT superclass EMPTY>
+<!ATTLIST superclass
+  type      CDATA   #REQUIRED
+>
+
+<!ELEMENT interface EMPTY>
+<!ATTLIST interface
+  type      CDATA   #REQUIRED
+>
+
+<!ELEMENT field (comment?)>
+<!ATTLIST field
+  modifiers CDATA   #IMPLIED
+  type      CDATA   #REQUIRED
+  name      CDATA   #REQUIRED
+  initial   CDATA   #IMPLIED
+>
+
+<!ELEMENT constructor (comment?,param*,exception*,code?)>
+<!ATTLIST constructor
+  modifiers CDATA #IMPLIED
+>
+
+<!ELEMENT method (comment?,param*,exception*,code?)>
+<!ATTLIST method
+  modifiers CDATA   #IMPLIED
+  return    CDATA   #REQUIRED
+  name      CDATA   #REQUIRED
+  foreach   CDATA   #IMPLIED
+>
+
+<!ELEMENT param (comment?)>
+<!ATTLIST param
+  type      CDATA   #REQUIRED
+  name      CDATA   #REQUIRED
+>
+
+<!ELEMENT exception EMPTY>
+<!ATTLIST exception
+  type      CDATA   #REQUIRED
+>
+
+<!ELEMENT comment (#PCDATA)>
+
+<!ELEMENT code (#PCDATA|replace)*>
+
+<!ELEMENT replace (#PCDATA)>
+<!ATTLIST replace
+  initial     CDATA   #REQUIRED
+  dependence  IDREF   #REQUIRED
+>

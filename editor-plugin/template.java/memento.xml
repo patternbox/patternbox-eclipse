@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="memento" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="Memento" type="class" modifiers="public">
+
+    <field modifiers="private" type="$State$" name="fState">
+      <comment>stores the State instance of the Memento</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Default constructor</comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$State$" name="state" />
+      <code>
+        super();
+        fState = state;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="setState">
+      <comment>
+        This method stores a State instance.
+      </comment>
+      <param type="$State$" name="state" />
+      <code>
+        fState = state;
+      </code>
+    </method>
+
+    <method modifiers="public" return="$State$" name="getState">
+      <comment>
+        This method returns the associated State instance.
+      </comment>
+      <code>
+        return fState;
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Originator" type="class" modifiers="public" >
+
+    <field modifiers="private" type="$State$" name="fState">
+      <comment>stores the internal state of the Originator</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Default constructor</comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$State$" name="state" />
+      <code>
+        super();
+        fState = state;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="$Memento$" name="createMemento">
+      <comment>
+        This method creates and returns a Memento object containing a snapshot
+        of the Originator instance's state.
+      </comment>
+      <code>
+        return new Memento(fState);
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="setMemento">
+      <comment>
+        This method passes back a Memento object to an Originator instance. The
+        Memento object must be used to restore an earlier Originator state.
+      </comment>
+      <param type="$Memento$" name="memento" />
+      <code>
+        fState = memento.getState();
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Caretaker" type="class" modifiers="public" >
+
+    <import type="java.util.Stack"/>
+
+    <field modifiers="private final" type="java.util.Stack" name="fHistoryStack" initial="new Stack()">
+      <comment>Stores a list of history states.</comment>
+    </field>
+
+    <field modifiers="private final" type="$Originator$" name="fOriginator">
+      <comment>Stores the associated Originator instance.</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Default constructor</comment>
+      <param type="$Originator$" name="originator" />
+      <code>
+        super();
+        fOriginator = originator;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="backupState">
+      <comment>
+        This method backups the current Originator state and stores it in a
+        history stack. This snapshot can be used to restore the current state
+        later.
+      </comment>
+      <code>
+        fHistoryStack.push(fOriginator.createMemento());
+      </code>
+    </method>
+
+    <method modifiers="public" return="boolean" name="restoreState">
+      <comment>
+        This method restores a previous Originator state.
+      </comment>
+      <code>
+        // check whether snapshots available
+        if (!fHistoryStack.empty()) {
+          $Memento$ memento = ($Memento$) fHistoryStack.pop();
+          fOriginator.setMemento(memento);
+          return true;
+        } else {
+          return false;
+        }  // if - else
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="State" type="interface" modifiers="public" >
+
+  </role>
+
+</templates>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="singleton"
+         name="Singleton"
+         topCategorie="GoF"
+         subCategorie="Creational Pattern">
+
+  <comment>
+    Ensure a class only has one instance, and provide a global point of access to it.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Singleton" min="1" max="1">
+    <comment>
+      <li>defines an Instance operation that lets clients access its unique instance. Instance is a class operation</li>
+      <li>may be responsible for creating its own unique instance.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" min="1" max="n">
+    <comment>
+      <li>requests the Singleton to get its unique instance.</li>
+    </comment>
+    <dependence roles="Singleton" />
+  </role>
+
+</pattern>

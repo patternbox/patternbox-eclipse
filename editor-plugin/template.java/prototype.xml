@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="prototype" version="1.1">
+
+  <!-- ====================================================================== -->
+  <role name="Prototype" type="interface" modifiers="public">
+
+    <interface type="java.lang.Cloneable"/>
+
+    <method modifiers="public" return="$Prototype$" name="toClone">
+      <comment>
+        Creates a new instance by cloning itself.
+      </comment>
+      <exception type="java.lang.CloneNotSupportedException"/>
+    </method>
+
+    <method modifiers="public" return="void" name="doSomething">
+      <comment>
+        This is just a dummy method that can be called by the client. Replace
+        this method by another one which you really need.
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcretePrototype" type="class" modifiers="public">
+
+    <interface type="$Prototype$"/>
+
+    <method modifiers="public" return="$Prototype$" name="toClone">
+      <comment>
+        Creates a new instance by cloning itself.
+      </comment>
+      <exception type="java.lang.CloneNotSupportedException"/>
+      <code>
+        return ($Prototype$) this.clone();
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="doSomething">
+      <comment>
+        This is just a dummy method that can be called by the client. Replace
+        this method by another one which you really need.
+      </comment>
+      <code/>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" type="class" modifiers="public">
+
+    <field modifiers="private final" type="$Prototype$" name="fPrototype">
+      <comment>stores the Prototype instance</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$Prototype$" name="prototype" />
+      <code>fPrototype = prototype;</code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="usePrototype">
+      <comment>
+        This is just an example how to use the Prototype pattern. This operation
+        must be customized based on your application needs.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+        try {
+          // create a new prototype without knowing the real implementation class
+          $Prototype$ prototype = fPrototype.toClone();
+          // call a Prototype method
+          prototype.doSomething();
+        } catch (CloneNotSupportedException e) {
+          // TODO: Handle exception
+          e.printStackTrace();
+        }
+      </code>
+    </method>
+
+    <method modifiers="public static" return="void" name="main">
+      <comment>
+        Run application from command line.
+      </comment>
+      <param type="java.lang.String[]" name="args" />
+      <code>
+        new $Client$(new $ConcretePrototype$()).usePrototype();
+      </code>
+    </method>
+
+  </role>
+
+</templates>

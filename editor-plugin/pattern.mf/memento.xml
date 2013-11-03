@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="memento"
+         name="Memento"
+         topCategorie="GoF"
+         subCategorie="Behavioral Pattern">
+
+  <comment>
+    Without violating encapsulation, capture and externalize an object's internal
+    state so that the object can be restored to this state later.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Memento" min="1" max="1">
+    <comment>
+      <li>stores internal state of the Originator object. The memento may store as much or as little of the originator's internal state as necessary at its originator's discretion.</li>
+      <li>protects against access by objects other than the originator. Mementos have effectively two interfaces. Caretaker sees a narrow interface to the Memento-it can only pass the memento to other objects. Originator, in contrast, sees a wide interface, one that lets it access all the data necessary to restore itself to its previous state. Ideally, only the originator that produced the memento would be permitted to access the memento's internal state.</li>
+    </comment>
+    <dependence roles="State" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Originator" min="1" max="1">
+    <comment>
+      <li>creates a memento containing a snapshot of its current internal state.</li>
+      <li>uses the memento to restore its internal state.</li>
+    </comment>
+    <dependence roles="Memento" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Caretaker" min="1" max="1">
+    <comment>
+      <li>is responsible for the memento's safekeeping.</li>
+      <li>never operates on or examines the contents of a memento.</li>
+    </comment>
+    <dependence roles="Memento Originator" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="State" min="1" max="1">
+    <comment>
+      <li>represents states of interest to Originator objects.</li>
+      <li>is just a marker interface to make to code more type safe.</li>
+    </comment>
+  </role>
+
+</pattern>

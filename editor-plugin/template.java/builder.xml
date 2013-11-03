@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="builder" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="Builder" type="interface" modifiers="public">
+
+    <method modifiers="public" return="void" name="buildPartA">
+      <comment>
+        This method constructs and assembles a particular part of a Product.
+      </comment>
+    </method>
+
+    <method modifiers="public" return="void" name="buildPartB">
+      <comment>
+        This method constructs and assembles a particular part of a Product.
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteBuilder" type="class" modifiers="public" >
+
+    <interface type="$Builder$"/>
+
+    <field modifiers="private final" type="$Product$" name="fProduct" initial="new $Product$()">
+      <comment>stores the Product instance of the ConcreteBuilder</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor creates a ConcreteBuilder instance.
+      </comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="buildPartA">
+      <comment>
+        This method constructs and assembles a particular part of a Product.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="buildPartB">
+      <comment>
+        This method constructs and assembles a particular part of a Product.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+      </code>
+    </method>
+
+    <method modifiers="public" return="$Product$" name="getProduct">
+      <comment>
+        This method returns the Product instance.
+      </comment>
+      <code>
+        return fProduct;
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Director" type="class" modifiers="public" >
+
+    <field modifiers="private final" type="$Builder$" name="fBuilder">
+      <comment>Stores the Builder instance of the Director</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor creates a Director instance.
+        @param builder Concrete Builder implementation.
+      </comment>
+      <param type="$Builder$" name="builder" />
+      <code>
+        super();
+        fBuilder = builder;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="construct">
+      <comment>
+        This method constructs an object by using the Builder interface.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+        fBuilder.buildPartA();
+        fBuilder.buildPartB();
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Product" type="class" modifiers="public" >
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor creates a Product instance.
+      </comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" type="class" modifiers="public" >
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor creates a Client instance.
+      </comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="$Product$" name="use$ConcreteBuilder$" foreach="ConcreteBuilder">
+      <comment>
+        This is just an example how to use the ConcreteBuilder pattern. This
+        method must be customized based on your application needs.
+      </comment>
+      <code>
+        final $ConcreteBuilder$ concreteBuilder = new $ConcreteBuilder$();
+        final $Director$ director = new $Director$(concreteBuilder);
+        director.construct();
+        return concreteBuilder.getProduct();
+      </code>
+    </method>
+
+  </role>
+
+</templates>

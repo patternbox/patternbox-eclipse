@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="facade" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="Facade" type="class" modifiers="public">
+
+    <field modifiers="private" type="$Subsystem$" name="fSubsystem">
+      <comment>stores the subsystem interface</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Default constuctor</comment>
+      <code>super();</code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="regSubsystem">
+      <comment>
+        This method registers the associated subsystem interface.
+      </comment>
+      <param type="$Subsystem$" name="subsystem" />
+      <code>
+        this.fSubsystem = subsystem;
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="callOperation1">
+      <comment>
+        This method calls a specific operation defined in your model.
+      </comment>
+      <code>
+        fSubsystem.operation1();
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="callOperation2">
+      <comment>
+        This method calls a specific operation defined in your model.
+      </comment>
+      <code>
+        fSubsystem.operation2();
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="callOperation3">
+      <comment>
+        This method calls a specific operation defined in your model.
+      </comment>
+      <code>
+        fSubsystem.operation3();
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Subsystem" type="class" modifiers="public">
+
+    <constructor modifiers="public">
+      <code>super();</code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="operation1">
+      <comment>
+        This can be any method of your model.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="operation2">
+      <comment>
+        This can be any method of your model.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="operation3">
+      <comment>
+        This can be any method of your model.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+      </code>
+    </method>
+
+  </role>
+
+</templates>

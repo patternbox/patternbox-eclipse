@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="command" version="1.0.1">
+
+  <!-- ====================================================================== -->
+  <role name="Command" type="interface" modifiers="public">
+
+    <method modifiers="public" return="void" name="execute">
+      <comment>
+        This abstract method must be implemented by the ConcreteCommand implementation.
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteCommand" type="class" modifiers="public" >
+
+    <interface type="$Command$"/>
+
+    <field modifiers="private final" type="$Receiver$" name="fReceiver">
+      <comment>stores the Receiver instance of the ConcreteCommand</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <!--<param type="$State$" name="state" />-->
+      <param type="$Receiver$" name="receiver" />
+      <code>
+        super();
+        fReceiver = receiver;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="execute">
+      <comment>
+        This method executes the command by invoking the corresponding
+        method of the Receiver instance.
+      </comment>
+      <code>
+        fReceiver.action();
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" type="class" modifiers="public" >
+
+    <field modifiers="private final" type="$Receiver$" name="fReceiver">
+      <comment>stores the Receiver instance of the Client</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor creates a Client instance and stores the given Receiver.
+      </comment>
+      <param type="$Receiver$" name="receiver" />
+      <code>
+        super();
+        fReceiver = receiver;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="init$ConcreteCommand$" foreach="ConcreteCommand">
+      <comment>
+        This method creates a ConcreteCommand instance and specifies a Receiver object.
+      </comment>
+      <code>
+        $ConcreteCommand$ cmd = new $ConcreteCommand$(fReceiver);
+        $Invoker$ invoker = new $Invoker$();
+        invoker.storeCommand(cmd);
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Invoker" type="class" modifiers="public" >
+
+    <field modifiers="private" type="$Command$" name="fCommand">
+      <comment>stores the Command instance of the Invoker</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Default constructor</comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$Command$" name="cmd" />
+      <code>
+        super();
+        fCommand = cmd;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="storeCommand">
+      <comment>
+        This method stores a ConcreteCommand instance.
+      </comment>
+      <param type="$Command$" name="cmd" />
+      <code>
+        fCommand = cmd;
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="execute">
+      <comment>
+        This method performs the actions associated with the ConcreteCommand
+        instance.
+      </comment>
+      <code>
+        fCommand.execute();
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Receiver" type="class" modifiers="public" >
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor creates a Receiver instance.
+      </comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="action">
+      <comment>
+        This method performs an action.
+      </comment>
+      <code>
+        // TODO Write your action code here ...
+      </code>
+    </method>
+
+  </role>
+
+</templates>

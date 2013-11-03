@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="abstractfactory" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="AbstractFactory" type="interface" modifiers="public">
+
+    <method modifiers="public" return="$AbstractProduct$" name="create$ConcreteProduct$" foreach="ConcreteProduct" >
+      <comment>
+        This method returns an instance of a AbstractProduct implementation
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteFactory" type="class" modifiers="public">
+
+    <interface type="$AbstractFactory$"/>
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor creates a ConcreteFactory instance.
+      </comment>
+      <code>super();</code>
+    </constructor>
+
+    <method modifiers="public" return="$AbstractProduct$" name="create$ConcreteProduct$" foreach="ConcreteProduct" >
+      <comment>
+        This method returns an instance of a AbstractProduct implementation
+      </comment>
+      <code>return new $ConcreteProduct$();</code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="AbstractProduct" type="interface" modifiers="public">
+
+    <method modifiers="public" return="void" name="doSomething">
+      <comment>
+        This is just a dummy method that can be called by the client. Replace
+        this method by another one which you really need.
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteProduct" type="class" modifiers="public">
+
+    <interface type="$AbstractProduct$"/>
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor creates a ConcreteProduct instance.
+      </comment>
+      <code>super();</code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="doSomething">
+      <comment>
+        This is just a dummy method that can be called by the client. Replace
+        this method by another one which you really need.
+      </comment>
+      <code/>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" type="class" modifiers="public">
+
+    <field modifiers="private final" type="$AbstractFactory$" name="fFactory">
+      <comment>holds the factory instance</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>
+        This construtor creates a Client instance.
+      </comment>
+      <param type="$AbstractFactory$" name="factory" />
+      <code>
+        super();
+        fFactory = factory;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="use$ConcreteProduct$" foreach="ConcreteProduct">
+      <comment>
+        This is just an example how to use the Abstract Factory pattern. This
+        operation must be customized based on your application needs.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+        final $AbstractProduct$ product = fFactory.create$ConcreteProduct$();
+        product.doSomething();
+      </code>
+    </method>
+
+  </role>
+
+</templates>

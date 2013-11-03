@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="iterator"
+         name="Iterator"
+         topCategorie="GoF"
+         subCategorie="Behavioral Pattern">
+
+  <comment>
+    Provide a way to access the elements of an aggregate object sequentially
+    without exposing its underlying representation.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Iterator" min="1" max="1">
+    <comment>
+      <li>defines an interface for accessing and traversing elements.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteIterator" min="1" max="1">
+    <comment>
+      <li>implements the Iterator interface.</li>
+      <li>keeps track of the current position in the traversal of the aggregate.</li>
+    </comment>
+    <dependence roles="Iterator ConcreteAggregate" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Aggregate" min="1" max="1">
+    <comment>
+      <li>defines an interface for creating an Iterator object.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteAggregate" min="1" max="1">
+    <comment>
+      <li>implements the Iterator creation interface to return an instance of the proper ConcreteIterator.</li>
+    </comment>
+    <dependence roles="Aggregate" />
+  </role>
+
+</pattern>

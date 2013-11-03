@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="observer" version="1.0">
+
+  <!-- ====================================================================== -->
+  <role name="Subject" type="class" modifiers="public">
+
+    <import type="java.util.ArrayList"/>
+    <import type="java.util.Iterator"/>
+
+    <field modifiers="private" type="java.util.List" name="fObserverList" initial="new ArrayList()">
+      <comment>
+        This list stores references to all Observer instances.
+      </comment>
+    </field>
+
+    <method modifiers="public" return="void" name="attach">
+      <comment>
+        This method attaches an Observer instance to the Subject instance.
+      </comment>
+      <param type="$Observer$" name="observer"/>
+      <code>
+        fObserverList.add(observer);
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="detach">
+      <comment>
+        This method detaches an Observer instance from the Subject instance.
+      </comment>
+      <param type="$Observer$" name="observer"/>
+      <code>
+        fObserverList.remove(observer);
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="toNotify">
+      <comment>
+        This method notifies the Subject instances that a change has been observed.
+      </comment>
+      <code>
+
+        Iterator it = fObserverList.iterator();
+
+        // for each registered observer call the 'update'-method
+        while(it.hasNext()) {
+          (($Observer$) it.next()).update();
+        }  // while
+
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Observer" type="interface" modifiers="public" >
+
+    <method modifiers="public" return="void" name="update">
+      <comment>
+        This method requests the Observer object to update itself to
+        reconcile its state with that of the Subject object.
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteSubject" type="class" modifiers="public">
+
+    <superclass type="$Subject$"/>
+
+    <field modifiers="private" type="$State$" name="fSubjectState">
+      <comment>stores the state of the ConcreteSubject</comment>
+    </field>
+
+    <method modifiers="public" return="$State$" name="getState">
+      <comment>
+        This method returns the state of the ConcreteSubject instance.
+      </comment>
+      <code>return fSubjectState;</code>
+    </method>
+
+    <method modifiers="public" return="void" name="setState">
+      <comment>
+        This method sets the state of the ConcreteSubject instance.
+      </comment>
+      <param type="$State$" name="state" />
+      <code>fSubjectState = state;</code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteObserver" type="class" modifiers="public">
+
+    <interface type="$Observer$"/>
+
+    <field modifiers="private" type="$State$" name="fObserverState">
+      <comment>stores the state of the ConcreteObserver</comment>
+    </field>
+
+    <field modifiers="private final" type="$ConcreteSubject$" name="fConcreteSubject">
+      <comment>stores the associated ConcreteSubject</comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$ConcreteSubject$" name="subject" />
+      <code>
+        super();
+        fConcreteSubject = subject;
+        // copy initial state
+        fObserverState = fConcreteSubject.getState();
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="update">
+      <comment>
+        This method updates the ConcreteObserver's state to be consistent
+        with the ConcreteSubject's state.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+        fObserverState = fConcreteSubject.getState();
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="State" type="interface" modifiers="public" >
+
+  </role>
+
+</templates>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="singleton" version="1.1">
+
+  <!-- ====================================================================== -->
+  <role name="Singleton" type="class" modifiers="public">
+
+    <field modifiers="private static" type="$Singleton$" name="sInstance" initial="null">
+      <comment>unique instance</comment>
+    </field>
+
+    <constructor modifiers="private">
+      <comment>Private constuctor</comment>
+      <code>super();</code>
+    </constructor>
+
+    <method modifiers="public static synchronized" return="$Singleton$" name="getUniqueInstance">
+      <comment>
+        Get the unique instance of this class.
+      </comment>
+      <code>
+
+        if (sInstance == null) {
+          sInstance = new $Singleton$();
+        }
+
+        return sInstance;
+
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="doSomething">
+      <comment>
+        This is just a dummy method that can be called by the client. Replace
+        this method by another one which you really need.
+      </comment>
+      <code/>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" type="class" modifiers="public">
+
+    <constructor modifiers="public">
+      <comment>Default constructor</comment>
+      <code>super();</code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="useSingleton">
+      <comment>
+        This is just an example how to use the Singleton pattern. This operation
+        must be customized based on your application needs.
+      </comment>
+      <code>
+        // TODO: Customize this method based on your application needs.
+        $Singleton$ singleton = $Singleton$.getUniqueInstance();
+        // call a Singleton method
+        singleton.doSomething();
+      </code>
+    </method>
+
+  </role>
+
+</templates>

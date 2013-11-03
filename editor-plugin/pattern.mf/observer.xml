@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="observer"
+         name="Observer"
+         topCategorie="GoF"
+         subCategorie="Behavioral Pattern">
+
+  <comment>
+    Define a one-to-many dependency between objects so that when one object
+    changes state, all its dependents are notified and updated automatically.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Subject" min="1" max="1">
+    <comment>
+      <li>knows its observers. Any number of Observer objects may observe a subject.</li>
+      <li>provides an interface for attaching and detaching Observer objects.</li>
+    </comment>
+    <dependence roles="Observer" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Observer" min="1" max="1">
+    <comment>
+      <li>defines an updating interface for objects that should be notified of changes in a subject.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteSubject" min="1" max="1">
+    <comment>
+      <li>stores state of interest to ConcreteObserver objects.</li>
+      <li>sends a notification to its observers when its state changes.</li>
+    </comment>
+    <dependence roles="Subject State" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteObserver" min="1" max="n">
+    <comment>
+      <li>maintains a reference to a ConcreteSubject object.</li>
+      <li>stores state that should stay consistent with the subject's. </li>
+      <li>implements the Observer updating interface to keep its state consistent with the subject's.</li>
+    </comment>
+    <dependence roles="Observer State" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="State" min="1" max="1">
+    <comment>
+      <li>represents states of interest to ConcreteObserver and ConcreteObserver objects.</li>
+      <li>is just a marker interface to make to code more type safe.</li>
+    </comment>
+  </role>
+
+</pattern>

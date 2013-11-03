@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Design Pattern Editor"
+            default="true"
+            icon="icons/editor.gif"
+            extensions="xdp"
+            contributorClass="com.patternbox.eclipse.editor.DesignPatternEditorContributor"
+            class="com.patternbox.eclipse.editor.DesignPatternEditor"
+            id="com.patternbox.eclipse.editor.DesignPatternEditor">
+      </editor>
+      <editor
+            name="Sample Multi-page Editor"
+            extensions="xdp"
+            icon="icons/sample.gif"
+            contributorClass="com.patternbox.eclipse.editor.MultiPageEditorContributor"
+            class="com.patternbox.eclipse.editor.MultiPageEditor"
+            id="com.patternbox.eclipse.editor.MultiPageEditor">
+      </editor>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Java"
+            id="org.eclipse.jdt.ui.java">
+      </category>
+      <wizard
+            name="Design Pattern Wizard"
+            icon="icons/wizard.gif"
+            category="org.eclipse.jdt.ui.java"
+            class="com.patternbox.eclipse.wizard.NewDesignPatternWizard"
+            id="com.patternbox.eclipse.wizard.NewDesignPatternWizard">
+     </wizard>
+   </extension>
+
+</plugin>

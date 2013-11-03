@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE pattern SYSTEM "manifest.dtd">
+<pattern id="prototype"
+         name="Prototype"
+         topCategorie="GoF"
+         subCategorie="Creational Pattern">
+
+  <comment>
+    Specify the kinds of objects to create using a prototypical instance, and create new
+    objects by coping this prototype.
+  </comment>
+
+  <!-- ====================================================================== -->
+  <role name="Prototype" min="1" max="1">
+    <comment>
+      <li>declares an interface for cloning itself.</li>
+    </comment>
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcretePrototype" min="1" max="n">
+    <comment>
+      <li>declares an operation for cloning itself.</li>
+    </comment>
+    <dependence roles="Prototype" />
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Client" min="1" max="n">
+    <comment>
+      <li>creates a new object by asking a prototype to clone itself.</li>
+    </comment>
+    <dependence roles="Prototype" />
+  </role>
+
+</pattern>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="factorymethod" version="1.1">
+
+  <!-- ====================================================================== -->
+  <role name="Product" type="interface" modifiers="public">
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteProduct" type="class" modifiers="public">
+
+    <interface type="$Product$"/>
+
+    <constructor modifiers="public">
+      <comment>Default constructor</comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Creator" type="class" modifiers="public abstract">
+
+    <field modifiers="private" type="$Product$" name="fProduct">
+      <comment>stores the Creator instance of the Product</comment>
+    </field>
+
+    <method modifiers="public abstract" return="$Product$" name="factoryMethod">
+      <comment>
+        The ConcreteCreator implementation have to return a ConcreteProduct.
+      </comment>
+    </method>
+
+    <method modifiers="public" return="void" name="anOperation">
+      <comment>
+        This method invokes the ConcreteCreator implementation to create a
+        ConcreteProduct.
+      </comment>
+      <code>
+        fProduct = factoryMethod();
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteCreator" type="class" modifiers="public">
+
+    <superclass type="$Creator$"/>
+
+    <constructor modifiers="public">
+      <comment>Default constructor</comment>
+      <code>
+        super();
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="$Product$" name="factoryMethod">
+      <comment>
+        This method returns a new instance of a ConcreteProduct implementation.
+      </comment>
+      <code>
+        return new $ConcreteProduct$();
+      </code>
+    </method>
+
+  </role>
+
+</templates>

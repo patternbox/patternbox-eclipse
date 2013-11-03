@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE templates SYSTEM "templates.dtd">
+
+<!-- Copyright (C) 2003-2012 by Dirk Ehms, www.patternbox.com. All rights reserved. -->
+
+<templates id="iterator" version="1.1">
+
+  <!-- ====================================================================== -->
+  <role name="Iterator" type="interface" modifiers="public">
+
+    <method modifiers="public" return="void" name="first">
+      <comment>
+        Moves the item pointer to the first item in the collection
+      </comment>
+    </method>
+
+    <method modifiers="public" return="void" name="next">
+      <comment>
+        Moves the item pointer to the next item in the collection
+      </comment>
+    </method>
+
+    <method modifiers="public" return="boolean" name="isDone">
+      <comment>
+        This method returns false if are still items in the collection to
+        iterate through, otherwise true.
+      </comment>
+    </method>
+
+    <method modifiers="public" return="java.lang.Object" name="currentItem">
+      <comment>
+        This method returns the item at current position.
+      </comment>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteIterator" type="class" modifiers="public">
+
+    <interface type="$Iterator$"/>
+
+    <field modifiers="private final" type="$ConcreteAggregate$" name="fListAggregate">
+      <comment>
+        This field stores the reference to the ConcreteAggregate instance.
+      </comment>
+    </field>
+
+    <field modifiers="private" type="int" name="fIndex" initial="0">
+      <comment>
+        This field stores the current item index.
+      </comment>
+    </field>
+
+    <constructor modifiers="public">
+      <comment>Constructor</comment>
+      <param type="$ConcreteAggregate$" name="aggregate" />
+      <code>
+        super();
+        fListAggregate = aggregate;
+      </code>
+    </constructor>
+
+    <method modifiers="public" return="void" name="first">
+      <comment>
+        Moves the item pointer to the first item in the collection
+      </comment>
+      <code>
+        fIndex = 0;
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="next">
+      <comment>
+        Moves the item pointer to the next item in the collection
+      </comment>
+      <code>
+        fIndex++;
+      </code>
+    </method>
+
+    <method modifiers="public" return="boolean" name="isDone">
+      <comment>
+        This method returns false if are still items in the collection to
+        iterate through, otherwise true.
+      </comment>
+      <code>
+        return fIndex == fListAggregate.count();
+      </code>
+    </method>
+
+    <method modifiers="public" return="java.lang.Object" name="currentItem">
+      <comment>
+        This method returns the item at current position.
+      </comment>
+      <code>
+        return fListAggregate.getList().get(fIndex);
+      </code>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="Aggregate" type="interface" modifiers="public">
+
+    <method modifiers="public" return="$Iterator$" name="createIterator">
+      <comment>
+        This method creates and returns a ConcreteAggregate instance.
+      </comment>
+    </method>
+
+    <method modifiers="public" return="int" name="count">
+      <comment>
+        This method returns the count of items.
+      </comment>
+    </method>
+
+    <method modifiers="public" return="void" name="append">
+      <comment>
+        This method appends a new item to the collection of items.
+      </comment>
+      <param type="java.lang.Object" name="item"/>
+    </method>
+
+    <method modifiers="public" return="void" name="remove">
+      <comment>
+        This method removes an item from the collection of items.
+      </comment>
+      <param type="java.lang.Object" name="item"/>
+    </method>
+
+  </role>
+
+  <!-- ====================================================================== -->
+  <role name="ConcreteAggregate" type="class" modifiers="public">
+
+    <interface type="$Aggregate$"/>
+
+    <field modifiers="private" type="java.util.ArrayList" name="fItemList" initial="new ArrayList()">
+      <comment>
+        This list stores references to all item instances.
+      </comment>
+    </field>
+
+    <method modifiers="public" return="$Iterator$" name="createIterator">
+      <comment>
+        This method creates and returns a ConcreteAggregate instance.
+      </comment>
+      <code>
+        return <replace initial="null" dependence="ConcreteIterator">new $ConcreteIterator$(this)</replace>;
+      </code>
+    </method>
+
+    <method modifiers="public" return="int" name="count">
+      <comment>
+        This method returns the count of items.
+      </comment>
+      <code>
+        return fItemList.size();
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="append">
+      <comment>
+        This method appends a new item to the collection of items.
+      </comment>
+      <param type="java.lang.Object" name="item"/>
+      <code>
+        fItemList.add(item);
+      </code>
+    </method>
+
+    <method modifiers="public" return="void" name="remove">
+      <comment>
+        This method removes an item from the collection of items.
+      </comment>
+      <param type="java.lang.Object" name="item"/>
+      <code>
+        fItemList.remove(item);
+      </code>
+    </method>
+
+    <method modifiers="public" return="java.util.List" name="getList">
+      <comment>
+        This method returns the internal collection implementation.
+      </comment>
+      <code>
+        return fItemList;
+      </code>
+    </method>
+
+  </role>
+
+</templates>
