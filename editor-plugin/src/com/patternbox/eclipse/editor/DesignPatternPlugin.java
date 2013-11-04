@@ -86,17 +86,6 @@ public class DesignPatternPlugin extends AbstractUIPlugin {
 		}
 	}
 
-	// public DesignPatternPlugin(IPluginDescriptor descriptor) {
-	// super(descriptor);
-	// fPluginInstance = this;
-	// fImageProvider = new ImageProvider();
-	// try {
-	// fResourceBundle = descriptor.getResourceBundle();
-	// } catch (MissingResourceException x) {
-	// fResourceBundle = null;
-	// }
-	// DesignPatternPool.initialize(getPluginPath());
-	// }
 	/* package */static IPath getInstallLocation() {
 		return new Path(getDefault().getDescriptor().getInstallURL().getFile());
 	}
@@ -213,7 +202,9 @@ public class DesignPatternPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		sPluginInstance = this;
-		DesignPatternPool.initialize(getPluginPath());
+		String pluginPath = getPluginPath();
+		log("Patternbox-Plugin-Path: " + pluginPath);
+		DesignPatternPool.initialize(pluginPath);
 	}
 
 	@Override

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.patternbox.eclipse_1.2.0.qualifier.jar" id="com.patternbox.eclipse" version="1.2.0.qualifier">
+      <category name="com.patternbox.eclipse.category"/>
+   </feature>
+   <category-def name="com.patternbox.eclipse.category" label="Design Pattern Editor"/>
+</site>

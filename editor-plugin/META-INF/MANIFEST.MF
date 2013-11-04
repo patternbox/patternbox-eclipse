@@ -17,6 +17,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.pde.core,
  org.eclipse.pde.ui,
  org.eclipse.ui.views
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Dirk Ehms, www.patternbox.com
