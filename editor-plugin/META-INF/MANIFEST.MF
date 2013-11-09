@@ -16,6 +16,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.debug.ui,
  org.eclipse.pde.core,
  org.eclipse.pde.ui,
- org.eclipse.ui.views
+ org.eclipse.ui.views,
+ org.eclipse.search
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Dirk Ehms, www.patternbox.com
