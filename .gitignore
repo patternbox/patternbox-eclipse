@@ -12,3 +12,4 @@ model/
 
 # ignore all files ending with ~
 *~
+/*.docx

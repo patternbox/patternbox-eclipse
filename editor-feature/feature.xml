@@ -3,7 +3,8 @@
       id="com.patternbox.eclipse"
       label="Patternbox Editor"
       version="1.2.0.qualifier"
-      provider-name="Dirk Ehms, www.patternbox.com">
+      provider-name="Dirk Ehms, www.patternbox.com"
+      plugin="com.patternbox.eclipse.editor">
 
    <description url="http://patternbox.com/projekte/eclipse-plugin.html">
       PatternBox is a design pattern editor for Eclipse.
@@ -13,8 +14,8 @@
       Copyright (c) 2003 - 2013  by Dirk Ehms, www.patternbox.com. All rights reserved.
    </copyright>
 
-   <license url="%licenseURL">
-      %license
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      Eclipse Public License Version 1.0 (&quot;EPL&quot;)
    </license>
 
    <url>
